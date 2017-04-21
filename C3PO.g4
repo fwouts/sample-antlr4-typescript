@@ -7,19 +7,16 @@ expression
     ;
 // We define methodCall to be a method name followed by an opening paren, an optional list of arguments, and a closing paren.
 methodCall
-    : methodName '(' methodCallArguments? ')'
+    : methodName '(' methodCallArguments ')'
     ;
 // We define methodName to be a name.
 methodName
     : NAME
     ;
-// We define methodCallArguments to be a list of arguments separated by commas.
+// We define methodCallArguments to be a list of expressions separated by commas.
 methodCallArguments
-    : singleMethodCallArgument (',' singleMethodCallArgument)*
-    ;
-// We define singleMethodCallArgument to be an expression.
-singleMethodCallArgument
-    : expression
+    : // No arguments
+    | expression (',' expression)*  // Some arguments
     ;
 // NAME represents any variable or method name.
 // The regular expression we use basically means "starts with a letter and may follow with any number of alphanumerical characters".

@@ -35,9 +35,8 @@ export class C3POParser extends Parser {
 	public static readonly RULE_methodCall = 1;
 	public static readonly RULE_methodName = 2;
 	public static readonly RULE_methodCallArguments = 3;
-	public static readonly RULE_singleMethodCallArgument = 4;
 	public static readonly ruleNames: string[] = [
-		"expression", "methodCall", "methodName", "methodCallArguments", "singleMethodCallArgument"
+		"expression", "methodCall", "methodName", "methodCallArguments"
 	];
 
 	private static readonly _LITERAL_NAMES: (string | undefined)[] = [
@@ -72,20 +71,20 @@ export class C3POParser extends Parser {
 		let _localctx: ExpressionContext = new ExpressionContext(this._ctx, this.state);
 		this.enterRule(_localctx, 0, C3POParser.RULE_expression);
 		try {
-			this.state = 12;
+			this.state = 10;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case C3POParser.NAME:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 10;
+				this.state = 8;
 				this.methodCall();
 				}
 				break;
 			case C3POParser.STRING:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 11;
+				this.state = 9;
 				this.match(C3POParser.STRING);
 				}
 				break;
@@ -111,25 +110,16 @@ export class C3POParser extends Parser {
 	public methodCall(): MethodCallContext {
 		let _localctx: MethodCallContext = new MethodCallContext(this._ctx, this.state);
 		this.enterRule(_localctx, 2, C3POParser.RULE_methodCall);
-		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 14;
+			this.state = 12;
 			this.methodName();
-			this.state = 15;
+			this.state = 13;
 			this.match(C3POParser.T__0);
-			this.state = 17;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			if (_la===C3POParser.NAME || _la===C3POParser.STRING) {
-				{
-				this.state = 16;
-				this.methodCallArguments();
-				}
-			}
-
-			this.state = 19;
+			this.state = 14;
+			this.methodCallArguments();
+			this.state = 15;
 			this.match(C3POParser.T__1);
 			}
 		}
@@ -154,7 +144,7 @@ export class C3POParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 21;
+			this.state = 17;
 			this.match(C3POParser.NAME);
 			}
 		}
@@ -178,51 +168,40 @@ export class C3POParser extends Parser {
 		this.enterRule(_localctx, 6, C3POParser.RULE_methodCallArguments);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 23;
-			this.singleMethodCallArgument();
 			this.state = 28;
 			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			while (_la===C3POParser.T__2) {
+			switch (this._input.LA(1)) {
+			case C3POParser.T__1:
+				this.enterOuterAlt(_localctx, 1);
 				{
+				}
+				break;
+			case C3POParser.NAME:
+			case C3POParser.STRING:
+				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 24;
-				this.match(C3POParser.T__2);
+				this.state = 20;
+				this.expression();
 				this.state = 25;
-				this.singleMethodCallArgument();
-				}
-				}
-				this.state = 30;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-			}
-			}
-		}
-		catch (re) {
-			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
-				this._errHandler.reportError(this, re);
-				this._errHandler.recover(this, re);
-			} else {
-				throw re;
-			}
-		}
-		finally {
-			this.exitRule();
-		}
-		return _localctx;
-	}
-	@RuleVersion(0)
-	public singleMethodCallArgument(): SingleMethodCallArgumentContext {
-		let _localctx: SingleMethodCallArgumentContext = new SingleMethodCallArgumentContext(this._ctx, this.state);
-		this.enterRule(_localctx, 8, C3POParser.RULE_singleMethodCallArgument);
-		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 31;
-			this.expression();
+				while (_la===C3POParser.T__2) {
+					{
+					{
+					this.state = 21;
+					this.match(C3POParser.T__2);
+					this.state = 22;
+					this.expression();
+					}
+					}
+					this.state = 27;
+					this._errHandler.sync(this);
+					_la = this._input.LA(1);
+				}
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -241,22 +220,21 @@ export class C3POParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uAF6F\u8320\u479D\uB75C\u4880\u1605\u191C\uAB37\x03\b$\x04\x02\t"+
-		"\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x03\x02\x03"+
-		"\x02\x05\x02\x0F\n\x02\x03\x03\x03\x03\x03\x03\x05\x03\x14\n\x03\x03\x03"+
-		"\x03\x03\x03\x04\x03\x04\x03\x05\x03\x05\x03\x05\x07\x05\x1D\n\x05\f\x05"+
-		"\x0E\x05 \v\x05\x03\x06\x03\x06\x03\x06\x02\x02\x02\x07\x02\x02\x04\x02"+
-		"\x06\x02\b\x02\n\x02\x02\x02!\x02\x0E\x03\x02\x02\x02\x04\x10\x03\x02"+
-		"\x02\x02\x06\x17\x03\x02\x02\x02\b\x19\x03\x02\x02\x02\n!\x03\x02\x02"+
-		"\x02\f\x0F\x05\x04\x03\x02\r\x0F\x07\x07\x02\x02\x0E\f\x03\x02\x02\x02"+
-		"\x0E\r\x03\x02\x02\x02\x0F\x03\x03\x02\x02\x02\x10\x11\x05\x06\x04\x02"+
-		"\x11\x13\x07\x03\x02\x02\x12\x14\x05\b\x05\x02\x13\x12\x03\x02\x02\x02"+
-		"\x13\x14\x03\x02\x02\x02\x14\x15\x03\x02\x02\x02\x15\x16\x07\x04\x02\x02"+
-		"\x16\x05\x03\x02\x02\x02\x17\x18\x07\x06\x02\x02\x18\x07\x03\x02\x02\x02"+
-		"\x19\x1E\x05\n\x06\x02\x1A\x1B\x07\x05\x02\x02\x1B\x1D\x05\n\x06\x02\x1C"+
-		"\x1A\x03\x02\x02\x02\x1D \x03\x02\x02\x02\x1E\x1C\x03\x02\x02\x02\x1E"+
-		"\x1F\x03\x02\x02\x02\x1F\t\x03\x02\x02\x02 \x1E\x03\x02\x02\x02!\"\x05"+
-		"\x02\x02\x02\"\v\x03\x02\x02\x02\x05\x0E\x13\x1E";
+		"\x03\uAF6F\u8320\u479D\uB75C\u4880\u1605\u191C\uAB37\x03\b!\x04\x02\t"+
+		"\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x03\x02\x03\x02\x05\x02"+
+		"\r\n\x02\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x04\x03\x04\x03\x05"+
+		"\x03\x05\x03\x05\x03\x05\x07\x05\x1A\n\x05\f\x05\x0E\x05\x1D\v\x05\x05"+
+		"\x05\x1F\n\x05\x03\x05\x02\x02\x02\x06\x02\x02\x04\x02\x06\x02\b\x02\x02"+
+		"\x02\x1F\x02\f\x03\x02\x02\x02\x04\x0E\x03\x02\x02\x02\x06\x13\x03\x02"+
+		"\x02\x02\b\x1E\x03\x02\x02\x02\n\r\x05\x04\x03\x02\v\r\x07\x07\x02\x02"+
+		"\f\n\x03\x02\x02\x02\f\v\x03\x02\x02\x02\r\x03\x03\x02\x02\x02\x0E\x0F"+
+		"\x05\x06\x04\x02\x0F\x10\x07\x03\x02\x02\x10\x11\x05\b\x05\x02\x11\x12"+
+		"\x07\x04\x02\x02\x12\x05\x03\x02\x02\x02\x13\x14\x07\x06\x02\x02\x14\x07"+
+		"\x03\x02\x02\x02\x15\x1F\x03\x02\x02\x02\x16\x1B\x05\x02\x02\x02\x17\x18"+
+		"\x07\x05\x02\x02\x18\x1A\x05\x02\x02\x02\x19\x17\x03\x02\x02\x02\x1A\x1D"+
+		"\x03\x02\x02\x02\x1B\x19\x03\x02\x02\x02\x1B\x1C\x03\x02\x02\x02\x1C\x1F"+
+		"\x03\x02\x02\x02\x1D\x1B\x03\x02\x02\x02\x1E\x15\x03\x02\x02\x02\x1E\x16"+
+		"\x03\x02\x02\x02\x1F\t\x03\x02\x02\x02\x05\f\x1B\x1E";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!C3POParser.__ATN) {
@@ -286,8 +264,8 @@ export class MethodCallContext extends ParserRuleContext {
 	public methodName(): MethodNameContext {
 		return this.getRuleContext(0, MethodNameContext);
 	}
-	public methodCallArguments(): MethodCallArgumentsContext | undefined {
-		return this.tryGetRuleContext(0, MethodCallArgumentsContext);
+	public methodCallArguments(): MethodCallArgumentsContext {
+		return this.getRuleContext(0, MethodCallArgumentsContext);
 	}
 	constructor(parent: ParserRuleContext, invokingState: number);
 	constructor(parent: ParserRuleContext, invokingState: number) {
@@ -310,13 +288,13 @@ export class MethodNameContext extends ParserRuleContext {
 
 
 export class MethodCallArgumentsContext extends ParserRuleContext {
-	public singleMethodCallArgument(): SingleMethodCallArgumentContext[];
-	public singleMethodCallArgument(i: number): SingleMethodCallArgumentContext;
-	public singleMethodCallArgument(i?: number): SingleMethodCallArgumentContext | SingleMethodCallArgumentContext[] {
+	public expression(): ExpressionContext[];
+	public expression(i: number): ExpressionContext;
+	public expression(i?: number): ExpressionContext | ExpressionContext[] {
 		if (i === undefined) {
-			return this.getRuleContexts(SingleMethodCallArgumentContext);
+			return this.getRuleContexts(ExpressionContext);
 		} else {
-			return this.getRuleContext(i, SingleMethodCallArgumentContext);
+			return this.getRuleContext(i, ExpressionContext);
 		}
 	}
 	constructor(parent: ParserRuleContext, invokingState: number);
@@ -325,19 +303,6 @@ export class MethodCallArgumentsContext extends ParserRuleContext {
 
 	}
 	@Override public get ruleIndex(): number { return C3POParser.RULE_methodCallArguments; }
-}
-
-
-export class SingleMethodCallArgumentContext extends ParserRuleContext {
-	public expression(): ExpressionContext {
-		return this.getRuleContext(0, ExpressionContext);
-	}
-	constructor(parent: ParserRuleContext, invokingState: number);
-	constructor(parent: ParserRuleContext, invokingState: number) {
-		super(parent, invokingState);
-
-	}
-	@Override public get ruleIndex(): number { return C3POParser.RULE_singleMethodCallArgument; }
 }
 
 
