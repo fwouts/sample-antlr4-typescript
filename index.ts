@@ -10,12 +10,33 @@ let l = new lexer.C3POLexer(inputStream);
 let tokenStream = new CommonTokenStream(l);
 let p = new parser.C3POParser(tokenStream);
 
-// Parse the input.
+// Parse and execute the code.
 let result = p.expression();
-if (result.methodCall()) {
-  // It's a method call.
-  let methodCall: parser.MethodCallContext = result.methodCall()!;
-  let methodName = methodCall.methodName().text;
-  console.log(`The root method name is ${methodName}`);
-  // methodName is "print".
+evaluateExpression(result);
+
+type ExpressionValue = string | null;
+
+function evaluateExpression(e: parser.ExpressionContext): ExpressionValue {
+  if (e.methodCall()) {
+    return evaluateMethodCall(e.methodCall()!);
+  } else {
+    // Our grammar is super simple, it's always a string between double quotes.
+    let stringExpression = e.text;
+    return stringExpression.substr(1, stringExpression.length - 2);
+  }
+}
+
+function evaluateMethodCall(m: parser.MethodCallContext): ExpressionValue {
+  let methodName = m.methodName().text;
+  let methodArguments = m.methodCallArguments().expression()
+      .map(expression => evaluateExpression(expression));
+  switch (methodName) {
+    case 'print':
+      console.log.apply(null, methodArguments);
+      return null;
+    case 'concat':
+      return methodArguments.join('');
+    default:
+      throw new Error('Unknown method ' + methodName);
+  }
 }
