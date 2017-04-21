@@ -125,7 +125,7 @@ export class C3POParser extends Parser {
 			if (_la===C3POParser.NAME || _la===C3POParser.STRING) {
 				{
 				this.state = 16;
-				this.methodCallArguments(0);
+				this.methodCallArguments();
 				}
 			}
 
@@ -172,53 +172,31 @@ export class C3POParser extends Parser {
 		}
 		return _localctx;
 	}
-
-	public methodCallArguments(): MethodCallArgumentsContext;
-	public methodCallArguments(_p: number): MethodCallArgumentsContext;
 	@RuleVersion(0)
-	public methodCallArguments(_p?: number): MethodCallArgumentsContext {
-		if (_p === undefined) {
-			_p = 0;
-		}
-
-		let _parentctx: ParserRuleContext = this._ctx;
-		let _parentState: number = this.state;
-		let _localctx: MethodCallArgumentsContext = new MethodCallArgumentsContext(this._ctx, _parentState);
-		let _prevctx: MethodCallArgumentsContext = _localctx;
-		let _startState: number = 6;
-		this.enterRecursionRule(_localctx, 6, C3POParser.RULE_methodCallArguments, _p);
+	public methodCallArguments(): MethodCallArgumentsContext {
+		let _localctx: MethodCallArgumentsContext = new MethodCallArgumentsContext(this._ctx, this.state);
+		this.enterRule(_localctx, 6, C3POParser.RULE_methodCallArguments);
+		let _la: number;
 		try {
-			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			{
-			this.state = 24;
+			this.state = 23;
 			this.singleMethodCallArgument();
-			}
-			this._ctx._stop = this._input.tryLT(-1);
-			this.state = 31;
+			this.state = 28;
 			this._errHandler.sync(this);
-			_alt = this.interpreter.adaptivePredict(this._input,2,this._ctx);
-			while ( _alt!==2 && _alt!==ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt===1 ) {
-					if ( this._parseListeners!=null ) this.triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					{
-					_localctx = new MethodCallArgumentsContext(_parentctx, _parentState);
-					this.pushNewRecursionContext(_localctx, _startState, C3POParser.RULE_methodCallArguments);
-					this.state = 26;
-					if (!(this.precpred(this._ctx, 1))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 1)");
-					this.state = 27;
-					this.match(C3POParser.T__2);
-					this.state = 28;
-					this.singleMethodCallArgument();
-					}
-					} 
+			_la = this._input.LA(1);
+			while (_la===C3POParser.T__2) {
+				{
+				{
+				this.state = 24;
+				this.match(C3POParser.T__2);
+				this.state = 25;
+				this.singleMethodCallArgument();
 				}
-				this.state = 33;
+				}
+				this.state = 30;
 				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input,2,this._ctx);
+				_la = this._input.LA(1);
 			}
 			}
 		}
@@ -232,7 +210,7 @@ export class C3POParser extends Parser {
 			}
 		}
 		finally {
-			this.unrollRecursionContexts(_parentctx);
+			this.exitRule();
 		}
 		return _localctx;
 	}
@@ -243,7 +221,7 @@ export class C3POParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 34;
+			this.state = 31;
 			this.expression();
 			}
 		}
@@ -262,39 +240,23 @@ export class C3POParser extends Parser {
 		return _localctx;
 	}
 
-	public sempred(_localctx: RuleContext, ruleIndex: number, predIndex: number): boolean {
-		switch (ruleIndex) {
-		case 3:
-			return this.methodCallArguments_sempred(_localctx as MethodCallArgumentsContext, predIndex);
-		}
-		return true;
-	}
-	private methodCallArguments_sempred(_localctx: MethodCallArgumentsContext, predIndex: number): boolean {
-		switch (predIndex) {
-		case 0:
-			return this.precpred(this._ctx, 1);
-		}
-		return true;
-	}
-
 	public static readonly _serializedATN: string =
-		"\x03\uAF6F\u8320\u479D\uB75C\u4880\u1605\u191C\uAB37\x03\b\'\x04\x02\t"+
+		"\x03\uAF6F\u8320\u479D\uB75C\u4880\u1605\u191C\uAB37\x03\b$\x04\x02\t"+
 		"\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x03\x02\x03"+
 		"\x02\x05\x02\x0F\n\x02\x03\x03\x03\x03\x03\x03\x05\x03\x14\n\x03\x03\x03"+
-		"\x03\x03\x03\x04\x03\x04\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05\x03\x05"+
-		"\x07\x05 \n\x05\f\x05\x0E\x05#\v\x05\x03\x06\x03\x06\x03\x06\x02\x02\x03"+
-		"\b\x07\x02\x02\x04\x02\x06\x02\b\x02\n\x02\x02\x02$\x02\x0E\x03\x02\x02"+
-		"\x02\x04\x10\x03\x02\x02\x02\x06\x17\x03\x02\x02\x02\b\x19\x03\x02\x02"+
-		"\x02\n$\x03\x02\x02\x02\f\x0F\x05\x04\x03\x02\r\x0F\x07\x07\x02\x02\x0E"+
-		"\f\x03\x02\x02\x02\x0E\r\x03\x02\x02\x02\x0F\x03\x03\x02\x02\x02\x10\x11"+
-		"\x05\x06\x04\x02\x11\x13\x07\x03\x02\x02\x12\x14\x05\b\x05\x02\x13\x12"+
-		"\x03\x02\x02\x02\x13\x14\x03\x02\x02\x02\x14\x15\x03\x02\x02\x02\x15\x16"+
-		"\x07\x04\x02\x02\x16\x05\x03\x02\x02\x02\x17\x18\x07\x06\x02\x02\x18\x07"+
-		"\x03\x02\x02\x02\x19\x1A\b\x05\x01\x02\x1A\x1B\x05\n\x06\x02\x1B!\x03"+
-		"\x02\x02\x02\x1C\x1D\f\x03\x02\x02\x1D\x1E\x07\x05\x02\x02\x1E \x05\n"+
-		"\x06\x02\x1F\x1C\x03\x02\x02\x02 #\x03\x02\x02\x02!\x1F\x03\x02\x02\x02"+
-		"!\"\x03\x02\x02\x02\"\t\x03\x02\x02\x02#!\x03\x02\x02\x02$%\x05\x02\x02"+
-		"\x02%\v\x03\x02\x02\x02\x05\x0E\x13!";
+		"\x03\x03\x03\x04\x03\x04\x03\x05\x03\x05\x03\x05\x07\x05\x1D\n\x05\f\x05"+
+		"\x0E\x05 \v\x05\x03\x06\x03\x06\x03\x06\x02\x02\x02\x07\x02\x02\x04\x02"+
+		"\x06\x02\b\x02\n\x02\x02\x02!\x02\x0E\x03\x02\x02\x02\x04\x10\x03\x02"+
+		"\x02\x02\x06\x17\x03\x02\x02\x02\b\x19\x03\x02\x02\x02\n!\x03\x02\x02"+
+		"\x02\f\x0F\x05\x04\x03\x02\r\x0F\x07\x07\x02\x02\x0E\f\x03\x02\x02\x02"+
+		"\x0E\r\x03\x02\x02\x02\x0F\x03\x03\x02\x02\x02\x10\x11\x05\x06\x04\x02"+
+		"\x11\x13\x07\x03\x02\x02\x12\x14\x05\b\x05\x02\x13\x12\x03\x02\x02\x02"+
+		"\x13\x14\x03\x02\x02\x02\x14\x15\x03\x02\x02\x02\x15\x16\x07\x04\x02\x02"+
+		"\x16\x05\x03\x02\x02\x02\x17\x18\x07\x06\x02\x02\x18\x07\x03\x02\x02\x02"+
+		"\x19\x1E\x05\n\x06\x02\x1A\x1B\x07\x05\x02\x02\x1B\x1D\x05\n\x06\x02\x1C"+
+		"\x1A\x03\x02\x02\x02\x1D \x03\x02\x02\x02\x1E\x1C\x03\x02\x02\x02\x1E"+
+		"\x1F\x03\x02\x02\x02\x1F\t\x03\x02\x02\x02 \x1E\x03\x02\x02\x02!\"\x05"+
+		"\x02\x02\x02\"\v\x03\x02\x02\x02\x05\x0E\x13\x1E";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!C3POParser.__ATN) {
@@ -348,11 +310,14 @@ export class MethodNameContext extends ParserRuleContext {
 
 
 export class MethodCallArgumentsContext extends ParserRuleContext {
-	public singleMethodCallArgument(): SingleMethodCallArgumentContext {
-		return this.getRuleContext(0, SingleMethodCallArgumentContext);
-	}
-	public methodCallArguments(): MethodCallArgumentsContext | undefined {
-		return this.tryGetRuleContext(0, MethodCallArgumentsContext);
+	public singleMethodCallArgument(): SingleMethodCallArgumentContext[];
+	public singleMethodCallArgument(i: number): SingleMethodCallArgumentContext;
+	public singleMethodCallArgument(i?: number): SingleMethodCallArgumentContext | SingleMethodCallArgumentContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(SingleMethodCallArgumentContext);
+		} else {
+			return this.getRuleContext(i, SingleMethodCallArgumentContext);
+		}
 	}
 	constructor(parent: ParserRuleContext, invokingState: number);
 	constructor(parent: ParserRuleContext, invokingState: number) {

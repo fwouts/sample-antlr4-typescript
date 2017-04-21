@@ -13,19 +13,16 @@ methodCall
 methodName
     : NAME
     ;
-// We define methodCallArguments to be either:
-// - a single argument
-// - a list of arguments, followed by a comma, followed by a single argument (note the recursiveness)
+// We define methodCallArguments to be a list of arguments separated by commas.
 methodCallArguments
-    : singleMethodCallArgument
-    | methodCallArguments ',' singleMethodCallArgument
+    : singleMethodCallArgument (',' singleMethodCallArgument)*
     ;
 // We define singleMethodCallArgument to be an expression.
 singleMethodCallArgument
     : expression
     ;
 // NAME represents any variable or method name.
-// The regular expression we use basically means "starts with a letter and may follow with any number of alphanumerical characters"
+// The regular expression we use basically means "starts with a letter and may follow with any number of alphanumerical characters".
 NAME
     : [a-zA-Z][a-zA-Z0-9]*
     ;
