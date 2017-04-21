@@ -1,0 +1,31 @@
+{
+  "name": "sample-antlr4-typescript",
+  "version": "1.0.0",
+  "description": "A sample TypeScript app that parses a grammar with ANTLR4.",
+  "main": "index.js",
+  "scripts": {
+    "live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
+    "antlr4ts": "antlr4ts -no-listener C3PO.g4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fwouts/sample-antlr4-typescript.git"
+  },
+  "keywords": [
+    "antlr4",
+    "typescript"
+  ],
+  "author": "Francois Wouts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fwouts/sample-antlr4-typescript/issues"
+  },
+  "homepage": "https://github.com/fwouts/sample-antlr4-typescript#readme",
+  "dependencies": {
+    "antlr4ts": "^0.4.0-alpha.4",
+    "antlr4ts-cli": "^0.4.0-alpha.4",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.2.2"
+  }
+}
